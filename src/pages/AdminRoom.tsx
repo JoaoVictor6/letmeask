@@ -1,4 +1,5 @@
 import { useParams, useHistory } from "react-router-dom";
+import { database } from "../services/firebase";
 
 import logoImg from "../assets/images/logo.svg";
 import deleteImg from "../assets/images/delete.svg";
@@ -10,8 +11,14 @@ import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
 import { useRoom } from "../hooks/useRoom";
 
-import "../styles/room.scss";
-import { database } from "../services/firebase";
+import {
+  PageRoom,
+  QuestionList,
+  RoomTitle,
+  Content,
+  Header,
+  Main,
+} from "../styles/room";
 
 type RoomParams = {
   id: string;
@@ -49,9 +56,9 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
+    <PageRoom>
+      <Header>
+        <Content>
           <img src={logoImg} alt="logo do site" />
           <div>
             <RoomCode code={roomId} />
@@ -59,21 +66,23 @@ export function AdminRoom() {
               Encerrar sessão
             </Button>
           </div>
-        </div>
-      </header>
+        </Content>
+      </Header>
 
-      <main>
-        <div className="room-title">
+      <Main>
+        <RoomTitle>
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
-        </div>
+        </RoomTitle>
 
-        <div className="question-list">
+        <QuestionList>
           {questions.map((question) => (
             <Question
               content={question.content}
               author={question.author}
               key={question.id}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
             >
               <button
                 type="button"
@@ -95,8 +104,8 @@ export function AdminRoom() {
               </button>
             </Question>
           ))}
-        </div>
-      </main>
-    </div>
+        </QuestionList>
+      </Main>
+    </PageRoom>
   );
 }

@@ -10,7 +10,17 @@ import { useAuthContext } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
 
-import "../styles/room.scss";
+import {
+  FormFooter,
+  PageRoom,
+  QuestionList,
+  UserInfo,
+  RoomTitle,
+  Content,
+  Header,
+  Textarea,
+  Main,
+} from "../styles/room";
 
 type RoomParams = {
   id: string;
@@ -67,51 +77,53 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
+    <PageRoom>
+      <Header>
+        <Content>
           <img src={logoImg} alt="logo do site" />
           <RoomCode code={roomId} />
-        </div>
-      </header>
+        </Content>
+      </Header>
 
-      <main>
-        <div className="room-title">
+      <Main>
+        <RoomTitle>
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
-        </div>
+        </RoomTitle>
 
         <form onSubmit={handleSendQuestion}>
-          <textarea
+          <Textarea
             placeholder="O que você quer perguntar?"
             value={newQuestion}
             onChange={(e) => setNewQuestion(e.target.value)}
           />
 
-          <div className="form-footer">
+          <FormFooter>
             {!user ? (
               <span>
                 Para enviar uma pergunta, <button>faça seu login</button>.
               </span>
             ) : (
-              <div className="user-info">
+              <UserInfo>
                 <img src={user.avatar} alt={user.name} />
                 <span>{user.name}</span>
-              </div>
+              </UserInfo>
             )}
 
             <Button disabled={!user || newQuestion === ""} type="submit">
               Enviar pergunta
             </Button>
-          </div>
+          </FormFooter>
         </form>
 
-        <div className="question-list">
+        <QuestionList>
           {questions.map((question) => (
             <Question
               content={question.content}
               author={question.author}
               key={question.id}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
             >
               <button
                 className={`like-button ${question.likeId && "liked"}`}
@@ -138,8 +150,8 @@ export function Room() {
               </button>
             </Question>
           ))}
-        </div>
-      </main>
-    </div>
+        </QuestionList>
+      </Main>
+    </PageRoom>
   );
 }

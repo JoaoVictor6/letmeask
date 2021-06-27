@@ -5,7 +5,13 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import googleIconImg from "../assets/images/google-icon.svg";
 
-import "../styles/auth.scss";
+import {
+  CreateRoomButton,
+  MainContent,
+  PageAuth,
+  Separator,
+} from "../styles/auth";
+
 import { Button } from "../components/Button";
 import { useAuthContext } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
@@ -45,25 +51,24 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
+    <PageAuth>
       <aside>
         <img src={illustrationImg} alt="Ilustração de perguntas e respostas." />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
-        <div className="main-content">
+        <MainContent>
           <img src={logoImg} alt="Logo do site" />
-          <button
-            className="create-room"
+          <CreateRoomButton
             onClick={() => {
               handleCreateRoom();
             }}
           >
             <img src={googleIconImg} alt="Logo do google" />
             Crie sua sala com o Google
-          </button>
-          <div className="separator">Ou entre em uma sala</div>
+          </CreateRoomButton>
+          <Separator>Ou entre em uma sala</Separator>
           <form onSubmit={handleJoinRoom}>
             <input
               type="text"
@@ -73,8 +78,8 @@ export function Home() {
             />
             <Button type="submit">Entrar na sala</Button>
           </form>
-        </div>
+        </MainContent>
       </main>
-    </div>
+    </PageAuth>
   );
 }
