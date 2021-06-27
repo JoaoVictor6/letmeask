@@ -6,8 +6,8 @@ module.exports = {
   extends: [
     "plugin:react/recommended",
     "standard",
-    "prettier",
-    "prettier/react",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -17,8 +17,10 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
-    quotes: [2, "double", "unescaped"],
+    quotes: [2, "double"],
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };

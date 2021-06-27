@@ -25,7 +25,7 @@ export function Question({
       <footer>
         <div
           className={`user-info ${isAnswered && "answered"} ${
-            isHighlighted && `highlighted`
+            isHighlighted && "highlighted"
           }`}
         >
           <img src={author.avatar} alt={author.name} />
