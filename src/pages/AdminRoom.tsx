@@ -9,6 +9,7 @@ import checkImg from "../assets/images/check.svg";
 import { Button } from "../components/Button";
 import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
+import { EmptyStateQuestion } from "../components/EmptyStateQuestion";
 import { useRoom } from "../hooks/useRoom";
 
 import {
@@ -76,34 +77,41 @@ export function AdminRoom() {
         </RoomTitle>
 
         <QuestionList>
-          {questions.map((question) => (
-            <Question
-              content={question.content}
-              author={question.author}
-              key={question.id}
-              isAnswered={question.isAnswered}
-              isHighlighted={question.isHighlighted}
-            >
-              <button
-                type="button"
-                onClick={() => handleCheckQuestionAnswered(question.id)}
+          {questions.length > 0 ? (
+            questions.map((question) => (
+              <Question
+                content={question.content}
+                author={question.author}
+                key={question.id}
+                isAnswered={question.isAnswered}
+                isHighlighted={question.isHighlighted}
               >
-                <img src={checkImg} alt="Marcar pergunta como respondida" />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleHighlightQuestion(question.id)}
-              >
-                <img src={answerImg} alt="Dar destaque a pergunta" />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDeleteQuestion(question.id)}
-              >
-                <img src={deleteImg} alt="Deletar pergunta" />
-              </button>
-            </Question>
-          ))}
+                <button
+                  className="check"
+                  type="button"
+                  onClick={() => handleCheckQuestionAnswered(question.id)}
+                >
+                  <img src={checkImg} alt="Marcar pergunta como respondida" />
+                </button>
+                <button
+                  className="answer"
+                  type="button"
+                  onClick={() => handleHighlightQuestion(question.id)}
+                >
+                  <img src={answerImg} alt="Dar destaque a pergunta" />
+                </button>
+                <button
+                  className="delete"
+                  type="button"
+                  onClick={() => handleDeleteQuestion(question.id)}
+                >
+                  <img src={deleteImg} alt="Deletar pergunta" />
+                </button>
+              </Question>
+            ))
+          ) : (
+            <EmptyStateQuestion />
+          )}
         </QuestionList>
       </Main>
     </PageRoom>
