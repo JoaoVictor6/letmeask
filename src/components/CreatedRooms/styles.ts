@@ -30,6 +30,7 @@ export const Header = styled.header`
 export const RenderContainer = styled.div`
   overflow-y: scroll;
   max-height: 330px;
+  box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.15);
 
   scrollbar-width: none;
 `;
@@ -88,4 +89,19 @@ export const RoomsCreatedAt = styled.div`
   margin-top: 0px;
   margin-left: 12px;
   margin-bottom: 12px;
+`;
+
+export const EmptyRoom = styled.div`
+  margin: 16px 0;
+
+  > h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 550;
+  }
+
+  > p {
+    font-size: 14px;
+    margin: 0;
+  }
 `;
