@@ -60,7 +60,11 @@ export function AdminRoom() {
     <PageRoom>
       <Header>
         <Content>
-          <img src={logoImg} alt="logo do site" />
+          <img
+            onClick={() => history.push("/rooms/")}
+            src={logoImg}
+            alt="logo do site"
+          />
           <div>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={() => handleEndRoom()}>

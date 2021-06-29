@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import logoImg from "../assets/images/logo.svg";
 
@@ -31,8 +31,13 @@ export function Room() {
   const { user } = useAuthContext();
   const [newQuestion, setNewQuestion] = useState("");
   const { id: roomId } = useParams<RoomParams>();
+  const history = useHistory();
 
-  const { questions, title } = useRoom(roomId);
+  const { questions, title, authorRoomId } = useRoom(roomId);
+
+  if (authorRoomId === user?.id) {
+    history.push(`/admin/rooms/${roomId}`);
+  }
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -81,7 +86,11 @@ export function Room() {
     <PageRoom>
       <Header>
         <Content>
-          <img src={logoImg} alt="logo do site" />
+          <img
+            onClick={() => history.push("/")}
+            src={logoImg}
+            alt="logo do site"
+          />
           <RoomCode code={roomId} />
         </Content>
       </Header>

@@ -20,6 +20,7 @@ export const Content = styled.div`
   align-items: center;
   > img {
     max-height: 45px;
+    cursor: pointer;
   }
 
   > div {
