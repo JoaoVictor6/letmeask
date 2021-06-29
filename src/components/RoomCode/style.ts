@@ -11,6 +11,12 @@ export const RoomCodeElement = styled.button`
   cursor: pointer;
   display: flex;
 
+  &:hover {
+    > div {
+      filter: brightness(0.9);
+    }
+  }
+
   > div {
     background: #835afd;
     padding: 0 12px;
@@ -27,5 +33,11 @@ export const RoomCodeElement = styled.button`
     width: 242px;
     font-size: 14px;
     font-weight: 500;
+  }
+
+  &:active {
+    img {
+      transform: scale(0.9);
+    }
   }
 `;

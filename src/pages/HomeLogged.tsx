@@ -4,34 +4,21 @@ import { database } from "../services/firebase";
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import loginImg from "../assets/images/login.svg";
-import googleIconImg from "../assets/images/google-icon.svg";
 
-import {
-  CreateRoomButton,
-  MainContent,
-  PageAuth,
-  Separator,
-} from "../styles/auth";
+import { MainContent, PageAuth } from "../styles/auth";
 
 import { Button } from "../components/Button";
 import { useAuthContext } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
+import { CreatedRooms } from "../components/CreatedRooms";
 
-export function Home() {
+export function HomeLogged() {
   const history = useHistory();
-  const { user, signInWithGoogle } = useAuthContext();
+  const { user } = useAuthContext();
   const [roomCode, setRoomCode] = useState("");
 
   if (!user) {
-    history.push("/rooms/");
-  }
-
-  function handleCreateRoom() {
-    if (!user) {
-      signInWithGoogle();
-    }
-
-    history.push("/rooms/new");
+    history.push("/");
   }
 
   async function handleJoinRoom(event: FormEvent) {
@@ -64,16 +51,8 @@ export function Home() {
       </aside>
       <main>
         <MainContent>
-          <img src={logoImg} alt="Logo do site" />
-          <CreateRoomButton
-            onClick={() => {
-              handleCreateRoom();
-            }}
-          >
-            <img src={googleIconImg} alt="Logo do google" />
-            Crie sua sala com o Google
-          </CreateRoomButton>
-          <Separator>Ou entre em uma sala</Separator>
+          <img src={logoImg} className="little" alt="Logo do site" />
+          <CreatedRooms />
           <form onSubmit={handleJoinRoom}>
             <input
               type="text"

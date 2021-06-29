@@ -109,6 +109,12 @@ export const MainContent = styled.div`
     align-items: center;
   }
 
+  .little {
+    width: 154px;
+    margin: auto;
+    margin-bottom: 16px;
+  }
+
   h2 {
     font-size: 24px;
     margin: 64px 0 24px;

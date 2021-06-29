@@ -24,11 +24,15 @@ export const ButtonElement = styled.button`
     color: #835afd;
   }
 
+  &.outline:hover {
+    border-color: #6f4bd8;
+  }
+
   > img {
     margin-right: 8px;
   }
 
-  &:not(:disabled):hover {
+  &:not(:disabled):not(.outline):hover {
     filter: brightness(0.9);
   }
 
