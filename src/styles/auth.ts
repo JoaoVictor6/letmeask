@@ -43,6 +43,67 @@ export const PageAuth = styled.div`
     justify-content: center;
     align-items: center;
   }
+
+  @media screen and (max-width: 414px) {
+    background: #835afd;
+
+    flex-direction: column;
+
+    aside {
+      padding: 0;
+      margin: 0 auto;
+
+      img {
+        width: 120px;
+        margin: 0 auto;
+      }
+
+      strong {
+        font-size: 24px;
+        line-height: 31px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 18px;
+        width: 313px;
+      }
+    }
+
+    main {
+      background: #fff;
+      flex: 10;
+
+      border-radius: 50px 50px 0 0;
+    }
+  }
+
+  @media screen and (max-width: 860px) and (min-width: 414px) {
+    aside {
+      padding: 0;
+      width: 40%;
+
+      img {
+        width: 220px;
+        margin: 0 auto;
+      }
+
+      strong {
+        width: 90%;
+        margin: 16px auto 0 auto;
+        font-size: 26px;
+        line-height: 30px;
+      }
+
+      p {
+        width: 90%;
+        font-size: 20px;
+        line-height: 20px;
+        margin: 0 auto;
+        margin-top: 16px;
+      }
+    }
+  }
 `;
 
 export const CreateRoomButton = styled.button`
@@ -147,6 +208,17 @@ export const MainContent = styled.div`
 
     a {
       color: #e559f9;
+    }
+  }
+
+  @media screen and (max-width: 414px) {
+    > img {
+      margin: 0 auto;
+      margin-bottom: 16px;
+    }
+
+    button {
+      margin-top: 8px;
     }
   }
 `;
