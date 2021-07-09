@@ -1,3 +1,4 @@
+import { FormEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 
@@ -5,11 +6,10 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import loginImg from "../assets/images/login.svg";
 
-import { MainContent, PageAuth } from "../styles/auth";
+import { MainContent, PageAuth } from "../styles/roomLogged";
 
 import { Button } from "../components/Button";
 import { useAuthContext } from "../hooks/useAuth";
-import { FormEvent, useState } from "react";
 import { CreatedRooms } from "../components/CreatedRooms";
 
 export function HomeLogged() {

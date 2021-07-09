@@ -52,9 +52,10 @@ export const PageAuth = styled.div`
     aside {
       padding: 0;
       margin: 0 auto;
+      display: none;
 
       img {
-        width: 120px;
+        width: 100px;
         margin: 0 auto;
       }
 
@@ -217,8 +218,8 @@ export const MainContent = styled.div`
   }
 
   @media screen and (max-width: 414px) {
-    > h2 {
-      margin: 32px 0;
+    > img:first-child {
+      width: 230px;
     }
 
     > img {

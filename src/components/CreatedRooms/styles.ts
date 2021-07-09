@@ -29,6 +29,7 @@ export const Header = styled.header`
 
 export const RenderContainer = styled.div`
   overflow-y: scroll;
+  min-height: 238px;
   max-height: 330px;
   box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.15);
 
