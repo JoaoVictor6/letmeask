@@ -1,25 +1,16 @@
 import { useParams, useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 
-import logoImg from "../assets/images/logo.svg";
 import deleteImg from "../assets/images/delete.svg";
 import answerImg from "../assets/images/answer.svg";
 import checkImg from "../assets/images/check.svg";
 
-import { Button } from "../components/Button";
 import { Question } from "../components/Question";
-import { RoomCode } from "../components/RoomCode";
+import { Header } from "../components/Header";
 import { EmptyStateQuestion } from "../components/EmptyStateQuestion";
 import { useRoom } from "../hooks/useRoom";
 
-import {
-  PageRoom,
-  QuestionList,
-  RoomTitle,
-  Content,
-  Header,
-  Main,
-} from "../styles/room";
+import { PageRoom, QuestionList, RoomTitle, Main } from "../styles/room";
 
 type RoomParams = {
   id: string;
@@ -58,22 +49,11 @@ export function AdminRoom() {
 
   return (
     <PageRoom>
-      <Header>
-        <Content>
-          <img
-            onClick={() => history.push("/rooms/")}
-            src={logoImg}
-            alt="logo do site"
-          />
-          <div>
-            <RoomCode code={roomId} />
-            <Button isOutlined onClick={() => handleEndRoom()}>
-              Encerrar sessão
-            </Button>
-          </div>
-        </Content>
-      </Header>
-
+      <Header
+        redirectPath="/rooms/"
+        hasButton={{ exists: true, handleButtonFunction: handleEndRoom }}
+        roomId={roomId}
+      />
       <Main>
         <RoomTitle>
           <h1>Sala {title}</h1>
