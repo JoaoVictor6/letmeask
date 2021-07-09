@@ -1,12 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-import logoImg from "../assets/images/logo.svg";
-
 import { Button } from "../components/Button";
 import { Question } from "../components/Question";
-import { RoomCode } from "../components/RoomCode";
 import { EmptyStateQuestion } from "../components/EmptyStateQuestion";
+import { Header } from "../components/Header";
 import { useAuthContext } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
@@ -17,8 +15,6 @@ import {
   QuestionList,
   UserInfo,
   RoomTitle,
-  Content,
-  Header,
   Textarea,
   Main,
 } from "../styles/room";
@@ -84,16 +80,12 @@ export function Room() {
 
   return (
     <PageRoom>
-      <Header>
-        <Content>
-          <img
-            onClick={() => history.push("/")}
-            src={logoImg}
-            alt="logo do site"
-          />
-          <RoomCode code={roomId} />
-        </Content>
-      </Header>
+      <Header
+        redirectPath="/"
+        roomId={roomId}
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        hasButton={{ exists: false, handleButtonFunction: () => {} }}
+      />
 
       <Main>
         <RoomTitle>
